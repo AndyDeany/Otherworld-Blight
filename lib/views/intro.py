@@ -26,11 +26,11 @@ class IntroView(View):
             if self.game.input.buttons[key].pressed:
                 self.game.switch_view(MainMenu)
 
-        try:
-            current_text = self.intro_text[:self.game.frame//10]
-        except IndexError:  # Intro has finished
+        current_length = self.game.frame//10
+        if current_length > len(self.intro_text):
             self.game.switch_view(MainMenu)
 
+        current_text = self.intro_text[:current_length]
         self.text = self.font.render(current_text, True, self.text_colour)
 
     def draw(self):
