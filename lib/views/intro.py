@@ -1,10 +1,10 @@
 """Module containing the Intro view for playing out the intro sequence."""
-import pygame
+import pygame   # TODO: Remove this
 from pygametemplate import View, load_font
 
 from lib.views import MainMenu
 
-pygame.init()
+pygame.init()   # TODO: Remove this
 
 class IntroView(View):
 
@@ -24,11 +24,11 @@ class IntroView(View):
     def logic(self):
         for key in ("escape", " ", "enter", "numpadenter"):
             if self.game.input.buttons[key].pressed:
-                self.game.switch_view(MainMenu)
+                self.game.set_view(MainMenu)
 
         current_length = self.game.frame//10
         if current_length > len(self.intro_text):
-            self.game.switch_view(MainMenu)
+            self.game.set_view(MainMenu)
 
         current_text = self.intro_text[:current_length]
         self.text = self.font.render(current_text, True, self.text_colour)
