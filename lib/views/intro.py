@@ -1,10 +1,8 @@
 """Module containing the Intro view for playing out the intro sequence."""
-import pygame   # TODO: Remove this
 from pygametemplate import View, load_font
 
 from lib.views import MainMenu
 
-pygame.init()   # TODO: Remove this when `pygametemplate` is fixed.
 
 class IntroView(View):
 
