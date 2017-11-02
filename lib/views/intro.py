@@ -4,14 +4,13 @@ from pygametemplate import View, load_font
 
 from lib.views import MainMenu
 
-pygame.init()   # TODO: Remove this
+pygame.init()   # TODO: Remove this when `pygametemplate` is fixed.
 
 class IntroView(View):
 
     background_colour = (255, 255, 255)
     text_colour = (0, 0, 0)
-    # TODO: Change the below to use pygametemplate.load_font() when it's fixed.
-    font = pygame.font.Font("assets/fonts/chewy.ttf", 80)
+    font = load_font("chewy", 80)
     intro_text = "Leviathan Operations"
 
     def load(self):
