@@ -6,7 +6,7 @@ from lib.views import SavesMenu, OptionsMenu, Controls
 
 class MainMenu(View):
 
-    background = Image("menus/main/background.png")
+    background = Image("menus/background.png")
     title = Image("menus/main/title.png")
 
     PLAY = Image("menus/main/play.png")
