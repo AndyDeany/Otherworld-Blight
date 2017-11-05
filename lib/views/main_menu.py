@@ -1,8 +1,6 @@
 """Module containing the MainMenu view for representing the main menu."""
 from pygametemplate import View, Image
 
-from lib.views import SavesMenu, OptionsMenu, Controls
-
 
 class MainMenu(View):
 
@@ -41,11 +39,11 @@ class MainMenu(View):
         if any(self.game.input.buttons[button].pressed for button in CONFIRM_BUTTONS):
             selection = self.items[self.selection_index]
             if selection == self.PLAY:
-                self.game.set_view(SavesMenu)
+                self.game.set_view("SavesMenu")
             elif selection == self.OPTIONS:
-                self.game.set_view(OptionsMenu)
+                self.game.set_view("OptionsMenu")
             elif selection == self.CONTROLS:
-                self.game.set_view(Controls)
+                self.game.set_view("Controls")
             elif selection == self.EXIT:
                 self.game.running = False   # TODO: Use upcoming self.game.quit() method
 

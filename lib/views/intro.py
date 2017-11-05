@@ -1,8 +1,6 @@
 """Module containing the Intro view for playing out the intro sequence."""
 from pygametemplate import View, load_font
 
-from lib.views import MainMenu
-
 
 class IntroView(View):
 
@@ -21,11 +19,11 @@ class IntroView(View):
     def logic(self):
         for key in ("escape", " ", "enter", "numpadenter"):
             if self.game.input.buttons[key].pressed:
-                self.game.set_view(MainMenu)
+                self.game.set_view("MainMenu")
 
         current_length = self.game.frame//10
         if current_length > len(self.intro_text):
-            self.game.set_view(MainMenu)
+            self.game.set_view("MainMenu")
 
         current_text = self.intro_text[:current_length]
         self.text = self.font.render(current_text, True, self.text_colour)
