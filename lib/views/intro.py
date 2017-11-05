@@ -17,13 +17,14 @@ class IntroView(View):
         pass
 
     def logic(self):
-        for key in ("escape", " ", "enter", "numpadenter"):
-            if self.game.input.buttons[key].pressed:
-                self.game.set_view("MainMenu")
+        CONTINUE_BUTTONS = ("escape", " ", "enter", "numpadenter")
+        if any(self.game.input.buttons.pressed for key in CONTINUE_BUTTONS):
+            self.game.set_view("MainMenu")
 
         current_length = self.game.frame//10
         if current_length > len(self.intro_text):
             self.game.set_view("MainMenu")
+            return
 
         current_text = self.intro_text[:current_length]
         self.text = self.font.render(current_text, True, self.text_colour)
