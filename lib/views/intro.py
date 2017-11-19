@@ -1,28 +1,36 @@
 """Module containing the Intro view for playing out the intro sequence."""
-import pygame
-from pygametemplate import View
+from pygametemplate import View, load_font
 
 from lib.views import MainMenu
 
 
 class IntroView(View):
 
+    background_colour = (255, 255, 255)
+    text_colour = (0, 0, 0)
+    font = load_font("chewy", 80)
+    intro_text = "Leviathan Operations"
+
     def load(self):
-        # TODO: Use upcoming pygametemplate.load_video() method
-        self.intro_video = pygame._movie.Movie("assets/videos/intro.mpg")
-        self.intro_video.set_display(self.game.screen)
-        self.intro_video.play()
+        width, height = self.font.size(self.intro_text)
+        self.coords = ((self.game.width - width)//2, (self.game.height - height)//2)
 
     def unload(self):
         self.intro_video = None
 
     def logic(self):
-        if not self.intro_video.get_busy():  # Intro has finished
-            self.game.switch_view(MainMenu)
+        CONTINUE_BUTTONS = ("escape", " ", "enter", "numpadenter")
+        if any(self.game.input.buttons.pressed for key in CONTINUE_BUTTONS):
+            self.game.set_view("MainMenu")
 
-        for key in ("escape", "space", "enter", "numpadenter"):
-            if self.game.input.buttons[key].pressed:
-                self.game.switch_view(MainMenu)
+        current_length = self.game.frame//10
+        if current_length > len(self.intro_text):
+            self.game.set_view("MainMenu")
+            return
+
+        current_text = self.intro_text[:current_length]
+        self.text = self.font.render(current_text, True, self.text_colour)
 
     def draw(self):
-        pass
+        self.game.screen.fill(self.background_colour)
+        self.game.screen.blit(self.text, self.coords)
