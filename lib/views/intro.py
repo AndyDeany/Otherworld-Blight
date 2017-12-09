@@ -20,7 +20,7 @@ class IntroView(View):
 
     def logic(self):
         CONTINUE_BUTTONS = ("escape", " ", "enter", "numpadenter")
-        if any(self.game.input.buttons.pressed for key in CONTINUE_BUTTONS):
+        if any(self.game.input.buttons[key].pressed for key in CONTINUE_BUTTONS):
             self.game.set_view("MainMenu")
 
         current_length = self.game.frame//10
