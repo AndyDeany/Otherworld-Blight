@@ -9,6 +9,3 @@ class OtherworldBlight(Game):
 
     def draw(self):
         pass
-
-    def quit(self):
-        pass
