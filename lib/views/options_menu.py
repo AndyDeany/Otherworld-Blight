@@ -1,5 +1,5 @@
 """Module containing the OptionsMenu view for showing the options menu."""
-from pygametemplate import View, load_image
+from pygametemplate import View, Image
 
 
 class OptionsMenu(View):
