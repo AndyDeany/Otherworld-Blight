@@ -1,0 +1,27 @@
+#!/bin/bash
+# Example usage: `compile -n otherworld-blight --noconsole`
+while getopts :n: option
+do
+    case "${option}"
+    in
+    n) name=$OPTARG; break;
+    esac
+done
+
+if [ -z ${name+x} ]
+then
+    echo "You must provide the target name using '-n <name>'."
+    exit 1
+else
+    echo "Compiling $name..."
+fi
+
+
+pyinstaller -y "$@" main.py
+
+target_dir=target/$name
+mkdir -p $target_dir
+cp -r dist/$name/* $target_dir
+cp -r assets/ $target_dir
+
+zip $target_dir
