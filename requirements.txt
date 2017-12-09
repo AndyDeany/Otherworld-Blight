@@ -1,2 +1,2 @@
 pygame==1.9.3
-pygametemplate==0.8.2
+pygametemplate==0.9.1
