@@ -6,3 +6,16 @@ install:
   - pip install -r requirements.txt -r test-requirements.txt
 script:
   - pycodestyle lib/
+before_deploy:
+  - pip install -r build-requirements.txt
+  - "./compile -n otherworldblight --noconsole"
+  - zip target/otherworldblight.zip target/otherworldblight
+
+deploy:
+  on:
+    tags: true
+  provider: releases
+  api_key:
+    secure: OFRGf7AHswgCksly6wSK03ib+96FDQKIIOhRb6G55fkPx8EQSYqyBQEWpEi3I3Q3eg5maWydshCRX4GLcvXR2SIbm9Cp2PUY5Veo3/CsoItLkvhRfyUEAxili8Uhdzgo1T33jj1IU3R4i9qtqq4UklXmon6+SJUdR271qMXj0n1om8WVBlbN9STksv/SDNRzi9nvrtmQmYZA5W9PlSeOblWuO1UCfm2jD3y4PjrRAnVjR8qlvIKtjcYxpssfkOsUqz9hvXk5IratXaa+gFKagexNINDvNUSBTYG+WcPLEkG8xWYPpwIrMxWAKgkGmYarEkUbXQIKbrIg4OSi4a2HTvNW5vsf0nAStnaFKs+sCjM+UtVF1TKIDs7zx5rol14Y3IQvCaDVetP1hnqAvdiyzZg8jTGHpSeLS1SMeC2273DewX5fs+bfxDfwN+Hskgm+GB7v6PLBSkErHt400xKBFI3hFdqT6YIZKaPxrhBpB+5RIHMk9VLuX4rysHK0yziqrT3dJyFf68A8ufvYT/hZREj/4z4kkxTCKp9lbA0TJjcwHET8+m6mNGbWApJXfnZouYJxsMvAi+GGQzYYYXhdpPpMXF+fMbDTUpIQbNTj0ClVC6omV53yzQeWUibl60GM53LFxIRhNWK0X8sRKf0WVM6SYflXiOrQU1amPxwwQjA=
+  file: target/otherworldblight.zip
+  skip_cleanup: true
